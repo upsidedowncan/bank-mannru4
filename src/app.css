@@ -1,0 +1,126 @@
+@import 'tailwindcss';
+@plugin '@tailwindcss/forms';
+@plugin '@tailwindcss/typography';
+@plugin 'daisyui';
+
+/* Modal animations */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes zoom-in-95 {
+  from {
+    transform: scale(0.95);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes slide-in-from-bottom-4 {
+  from {
+    transform: translateY(1rem);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.animate-in {
+  animation-fill-mode: both;
+}
+
+.fade-in {
+  animation-name: fade-in;
+}
+
+.zoom-in-95 {
+  animation-name: zoom-in-95;
+}
+
+.slide-in-from-bottom-4 {
+  animation-name: slide-in-from-bottom-4;
+}
+
+.duration-200 {
+  animation-duration: 200ms;
+}
+
+/* Ensure form controls work properly on all screen sizes */
+.form-control {
+  @apply flex flex-col;
+}
+
+.form-control .label {
+  @apply flex justify-start mb-1;
+}
+
+.form-control .label .label-text {
+  @apply text-left;
+}
+
+/* Fix modal overflow on mobile */
+.modal-container {
+  box-sizing: border-box;
+}
+
+@media (max-width: 640px) {
+  .modal-container {
+    width: calc(100vw - 2rem) !important;
+    max-width: calc(100vw - 2rem) !important;
+    margin: 1rem !important;
+    min-width: 0 !important;
+  }
+  
+  /* Prevent any child elements from causing overflow */
+  .modal-container * {
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  
+  /* Ensure inputs don't overflow */
+  .modal-container .input,
+  .modal-container .select,
+  .modal-container .textarea {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+  
+  /* Prevent body scroll when modal is open on mobile */
+  body:has(.modal-container) {
+    overflow: hidden;
+  }
+  
+  /* Ensure modal backdrop doesn't cause overflow */
+  .fixed.inset-0 {
+    overflow: hidden;
+  }
+}
+
+/* Global anti-overflow safeguards */
+html, body {
+  overflow-x: hidden;
+}
+
+/* Allow flex/grid children to shrink and avoid overflow */
+*, *::before, *::after {
+  min-width: 0;
+}
+
+/* Wrap long strings/URLs across the app */
+body, input, textarea, button, select, p, h1, h2, h3, h4, h5, h6, span, a, label, div {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+/* Media should never overflow horizontally */
+img, video, canvas, iframe {
+  max-width: 100%;
+  height: auto;
+}
