@@ -1,15 +1,24 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 @plugin '@tailwindcss/forms';
 @plugin '@tailwindcss/typography';
 @plugin 'daisyui';
 
-/* Modal animations */
+/* Modal animations - Opening and Closing */
 @keyframes fade-in {
   from {
     opacity: 0;
   }
   to {
     opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
   }
 }
 
@@ -22,6 +31,15 @@
   }
 }
 
+@keyframes zoom-out-95 {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(0.95);
+  }
+}
+
 @keyframes slide-in-from-bottom-4 {
   from {
     transform: translateY(1rem);
@@ -31,7 +49,20 @@
   }
 }
 
+@keyframes slide-out-to-bottom-4 {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(1rem);
+  }
+}
+
 .animate-in {
+  animation-fill-mode: both;
+}
+
+.animate-out {
   animation-fill-mode: both;
 }
 
@@ -39,12 +70,24 @@
   animation-name: fade-in;
 }
 
+.fade-out {
+  animation-name: fade-out;
+}
+
 .zoom-in-95 {
   animation-name: zoom-in-95;
 }
 
+.zoom-out-95 {
+  animation-name: zoom-out-95;
+}
+
 .slide-in-from-bottom-4 {
   animation-name: slide-in-from-bottom-4;
+}
+
+.slide-out-to-bottom-4 {
+  animation-name: slide-out-to-bottom-4;
 }
 
 .duration-200 {
@@ -76,13 +119,13 @@
     margin: 1rem !important;
     min-width: 0 !important;
   }
-  
+
   /* Prevent any child elements from causing overflow */
   .modal-container * {
     max-width: 100%;
     box-sizing: border-box;
   }
-  
+
   /* Ensure inputs don't overflow */
   .modal-container .input,
   .modal-container .select,
@@ -91,12 +134,12 @@
     max-width: 100% !important;
     min-width: 0 !important;
   }
-  
+
   /* Prevent body scroll when modal is open on mobile */
   body:has(.modal-container) {
     overflow: hidden;
   }
-  
+
   /* Ensure modal backdrop doesn't cause overflow */
   .fixed.inset-0 {
     overflow: hidden;
@@ -104,23 +147,94 @@
 }
 
 /* Global anti-overflow safeguards */
-html, body {
-  overflow-x: hidden;
+html {
+  overflow-x: clip;
+  overflow-y: auto;
+  height: 100%;
+}
+
+body {
+  overflow-x: clip;
+  overflow-y: auto;
+  position: static !important;
+  min-height: 100vh;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Fix empty space on sides */
+#root,
+main {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Override max-w-7xl constraint for full width pages */
+.max-w-7xl {
+  max-width: 100% !important;
+}
+
+/* Ensure content areas use full width */
+body > * {
+  max-width: 100%;
+}
+
+/* Force sticky positioning to work */
+.sticky {
+  position: -webkit-sticky !important;
+  position: sticky !important;
+  top: 0 !important;
+  will-change: transform;
+  z-index: 50;
+}
+
+/* Navbar specific sticky styles */
+.navbar.sticky,
+nav.sticky {
+  position: -webkit-sticky !important;
+  position: sticky !important;
+  top: 0 !important;
+  width: 100%;
+  will-change: transform;
+  z-index: 50;
 }
 
 /* Allow flex/grid children to shrink and avoid overflow */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   min-width: 0;
 }
 
 /* Wrap long strings/URLs across the app */
-body, input, textarea, button, select, p, h1, h2, h3, h4, h5, h6, span, a, label, div {
+body,
+input,
+textarea,
+button,
+select,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+span,
+a,
+label,
+div {
   overflow-wrap: anywhere;
   word-break: break-word;
 }
 
 /* Media should never overflow horizontally */
-img, video, canvas, iframe {
+img,
+video,
+canvas,
+iframe {
   max-width: 100%;
   height: auto;
 }
