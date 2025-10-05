@@ -28,35 +28,6 @@
 </svelte:head>
 
 <!-- Navigation -->
-<nav class="navbar bg-white shadow-sm border-b">
-  <div class="navbar-start">
-    <div class="dropdown">
-      <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
-        <Icon icon="mdi:menu" class="w-5 h-5" />
-      </div>
-      <ul
-        tabindex="0"
-        class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
-      >
-        <li><a href="#services">Услуги</a></li>
-        <li><a href="#about">О банке</a></li>
-      </ul>
-    </div>
-    <a class="btn btn-ghost text-xl font-bold text-primary">Маннру</a>
-  </div>
-  <div class="navbar-center hidden lg:flex">
-    <ul class="menu menu-horizontal px-1">
-      <li><a href="#services" class="hover:text-primary">Услуги</a></li>
-      <li><a href="#about" class="hover:text-primary">О банке</a></li>
-    </ul>
-  </div>
-  <div class="navbar-end">
-    <a href="/login" class="btn btn-primary">
-      <Icon icon="mdi:login" class="w-4 h-4" />
-      Интернет-банк
-    </a>
-  </div>
-</nav>
 
 <!-- Hero Section -->
 <section class="hero min-h-[80vh] bg-gradient-to-r from-slate-50 to-blue-50">

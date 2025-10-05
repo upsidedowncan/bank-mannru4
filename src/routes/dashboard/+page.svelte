@@ -456,72 +456,60 @@
   </div>
 {:else}
   <div
-    class="h-screen flex flex-col bg-gradient-to-br from-gray-50 via-blue-50/30 to-purple-50/20 overflow-hidden"
+    class="flex-1 flex flex-col w-full px-4 sm:px-6 lg:px-8 py-4 bg-gradient-to-br from-gray-50 via-blue-50/30 to-purple-50/20"
   >
-    <div
-      class="flex-1 flex flex-col w-full px-4 sm:px-6 lg:px-8 py-4 overflow-hidden"
-    >
       <!-- Stats Cards -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-4 flex-shrink-0">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-2 mb-3 flex-shrink-0">
         <div
-          class="bg-white rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300 p-3 border border-gray-100"
+          class="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 p-2 border border-gray-100"
         >
           <div class="flex items-center justify-between">
             <div>
               <p class="text-xs font-medium text-gray-600">Общий баланс</p>
-              <p class="text-lg md:text-xl font-light text-gray-900">
+              <p class="text-base md:text-lg font-light text-gray-900">
                 {formatCurrency(totalBalance)}
               </p>
             </div>
             <div
-              class="w-9 h-9 md:w-10 md:h-10 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center shadow-lg"
+              class="w-8 h-8 bg-gradient-to-br from-blue-400 to-blue-600 rounded-lg flex items-center justify-center shadow-md"
             >
-              <Icon
-                icon="mdi:wallet"
-                class="w-4 h-4 md:w-5 md:h-5 text-white"
-              />
+              <Icon icon="mdi:wallet" class="w-4 h-4 text-white" />
             </div>
           </div>
         </div>
 
         <div
-          class="bg-white rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300 p-3 border border-gray-100"
+          class="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 p-2 border border-gray-100"
         >
           <div class="flex items-center justify-between">
             <div>
               <p class="text-xs font-medium text-gray-600">Доходы за месяц</p>
-              <p class="text-lg md:text-xl font-light text-green-600">
+              <p class="text-base md:text-lg font-light text-green-600">
                 {formatCurrency(monthlyIncome)}
               </p>
             </div>
             <div
-              class="w-9 h-9 md:w-10 md:h-10 bg-gradient-to-br from-green-400 to-green-600 rounded-xl flex items-center justify-center shadow-lg"
+              class="w-8 h-8 bg-gradient-to-br from-green-400 to-green-600 rounded-lg flex items-center justify-center shadow-md"
             >
-              <Icon
-                icon="mdi:arrow-up"
-                class="w-4 h-4 md:w-5 md:h-5 text-white"
-              />
+              <Icon icon="mdi:arrow-up" class="w-4 h-4 text-white" />
             </div>
           </div>
         </div>
 
         <div
-          class="bg-white rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300 p-3 border border-gray-100"
+          class="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 p-2 border border-gray-100"
         >
           <div class="flex items-center justify-between">
             <div>
               <p class="text-xs font-medium text-gray-600">Расходы за месяц</p>
-              <p class="text-lg md:text-xl font-light text-red-600">
+              <p class="text-base md:text-lg font-light text-red-600">
                 {formatCurrency(monthlyExpenses)}
               </p>
             </div>
             <div
-              class="w-9 h-9 md:w-10 md:h-10 bg-gradient-to-br from-red-400 to-red-600 rounded-xl flex items-center justify-center shadow-lg"
+              class="w-8 h-8 bg-gradient-to-br from-red-400 to-red-600 rounded-lg flex items-center justify-center shadow-md"
             >
-              <Icon
-                icon="mdi:arrow-down"
-                class="w-4 h-4 md:w-5 md:h-5 text-white"
-              />
+              <Icon icon="mdi:arrow-down" class="w-4 h-4 text-white" />
             </div>
           </div>
         </div>
@@ -559,20 +547,20 @@
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 flex-1 min-h-0">
         <!-- Cards Section -->
         <div
-          class="bg-white rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300 border border-gray-100 flex flex-col overflow-hidden"
+          class="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 border border-gray-100 flex flex-col"
         >
           <div
-            class="p-4 border-b border-gray-200 bg-gradient-to-r from-gray-50 to-white flex-shrink-0"
+            class="p-3 border-b border-gray-200 bg-gradient-to-r from-gray-50 to-white flex-shrink-0"
           >
-            <h2 class="text-base font-semibold text-gray-900 flex items-center">
+            <h2 class="text-sm font-semibold text-gray-900 flex items-center">
               <Icon
                 icon="mdi:credit-card-multiple"
-                class="w-5 h-5 mr-2 text-primary"
+                class="w-4 h-4 mr-2 text-primary"
               />
               Мои карты
             </h2>
           </div>
-          <div class="p-4 overflow-y-auto flex-1">
+          <div class="p-3 overflow-y-auto flex-1">
             {#if cards.length === 0}
               <div class="text-center py-4">
                 <Icon
@@ -588,31 +576,31 @@
                 </button>
               </div>
             {:else}
-              <div class="space-y-2">
+              <div class="space-y-1">
                 {#each cards as card}
                   <div
                     class="bg-gradient-to-r {getCardColor(
                       card.card_type,
-                    )} rounded-xl p-4 text-white relative shadow-lg hover:shadow-2xl transition-shadow duration-300"
+                    )} rounded-lg p-3 text-white relative shadow-md hover:shadow-xl transition-shadow duration-300"
                   >
                     <!-- Card Status Indicator -->
                     {#if card.is_blocked}
                       <div
-                        class="absolute top-3 right-3 bg-red-500/90 backdrop-blur-sm text-white px-2 py-0.5 rounded-full text-xs font-medium shadow-lg"
+                        class="absolute top-2 right-2 bg-red-500/90 backdrop-blur-sm text-white px-1.5 py-0.5 rounded-full text-xs font-medium shadow-md"
                       >
                         Заблокирована
                       </div>
                     {:else if !card.is_active}
                       <div
-                        class="absolute top-3 right-3 bg-gray-500/90 backdrop-blur-sm text-white px-2 py-0.5 rounded-full text-xs font-medium shadow-lg"
+                        class="absolute top-2 right-2 bg-gray-500/90 backdrop-blur-sm text-white px-1.5 py-0.5 rounded-full text-xs font-medium shadow-md"
                       >
                         Закрыта
                       </div>
                     {/if}
 
-                    <div class="flex justify-between items-start mb-3">
+                    <div class="flex justify-between items-start mb-2">
                       <div>
-                        <p class="text-sm opacity-80">{card.card_name}</p>
+                        <p class="text-xs opacity-80">{card.card_name}</p>
                         <p class="text-xs opacity-60 uppercase">
                           {card.card_type} • {card.currency}
                         </p>
@@ -620,19 +608,19 @@
                       <div class="flex items-center space-x-1">
                         <Icon
                           icon="mdi:credit-card"
-                          class="w-6 h-6 opacity-80"
+                          class="w-5 h-5 opacity-80"
                         />
                         <button
                           on:click={() => openCardManagement(card)}
-                          class="bg-white/20 hover:bg-white/40 p-1.5 rounded-lg transition-colors backdrop-blur-sm"
+                          class="bg-white/20 hover:bg-white/40 p-1 rounded-md transition-colors backdrop-blur-sm"
                           title="Управление картой"
                         >
-                          <Icon icon="mdi:cog" class="w-4 h-4" />
+                          <Icon icon="mdi:cog" class="w-3 h-3" />
                         </button>
                       </div>
                     </div>
-                    <div class="mb-3">
-                      <p class="text-xl font-light">
+                    <div class="mb-2">
+                      <p class="text-lg font-light">
                         {formatCurrency(card.balance)}
                       </p>
                       {#if card.credit_limit}
@@ -647,7 +635,7 @@
                       {/if}
                     </div>
                     <div class="flex justify-between items-end">
-                      <p class="font-mono text-sm">
+                      <p class="font-mono text-xs">
                         {formatCardNumber(card.card_number)}
                       </p>
                       <p class="text-xs opacity-60">
@@ -666,17 +654,17 @@
 
         <!-- Transactions Section -->
         <div
-          class="bg-white rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300 border border-gray-100 flex flex-col overflow-hidden"
+          class="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 border border-gray-100 flex flex-col"
         >
           <div
-            class="p-4 border-b border-gray-200 bg-gradient-to-r from-gray-50 to-white flex-shrink-0"
+            class="p-3 border-b border-gray-200 bg-gradient-to-r from-gray-50 to-white flex-shrink-0"
           >
-            <h2 class="text-base font-semibold text-gray-900 flex items-center">
-              <Icon icon="mdi:history" class="w-5 h-5 mr-2 text-primary" />
+            <h2 class="text-sm font-semibold text-gray-900 flex items-center">
+              <Icon icon="mdi:history" class="w-4 h-4 mr-2 text-primary" />
               Последние операции
             </h2>
           </div>
-          <div class="p-4 overflow-y-auto flex-1">
+          <div class="p-3 overflow-y-auto flex-1">
             {#if transactions.length === 0}
               <div class="text-center py-4">
                 <Icon
@@ -686,17 +674,17 @@
                 <p class="text-sm text-gray-500">Операций пока нет</p>
               </div>
             {:else}
-              <div class="space-y-2">
+              <div class="space-y-1">
                 {#each transactions as transaction}
                   <div
-                    class="flex items-center justify-between p-3 border border-gray-200 rounded-xl hover:shadow-md transition-shadow duration-300 hover:border-primary/30 bg-white"
+                    class="flex items-center justify-between p-2 border border-gray-200 rounded-lg hover:shadow-sm transition-shadow duration-300 hover:border-primary/30 bg-white"
                   >
                     <div class="flex items-center space-x-3">
                       <div
-                        class="w-9 h-9 bg-gradient-to-br {transaction.transaction_type ===
+                        class="w-8 h-8 bg-gradient-to-br {transaction.transaction_type ===
                         'credit'
                           ? 'from-green-400 to-green-600'
-                          : 'from-red-400 to-red-600'} rounded-full flex items-center justify-center shadow-md"
+                          : 'from-red-400 to-red-600'} rounded-lg flex items-center justify-center shadow-sm"
                       >
                         <Icon
                           icon={transaction.transaction_type === "credit"
@@ -706,10 +694,10 @@
                         />
                       </div>
                       <div>
-                        <p class="text-sm font-medium text-gray-900">
+                        <p class="text-xs font-medium text-gray-900">
                           {transaction.description}
                         </p>
-                        <p class="text-xs text-gray-500">
+                        <p class="text-[11px] text-gray-500">
                           {new Date(transaction.created_at).toLocaleDateString(
                             "ru-RU",
                           )} •
@@ -720,7 +708,7 @@
                     </div>
                     <div class="text-right">
                       <p
-                        class="font-medium {transaction.transaction_type ===
+                        class="text-sm font-medium {transaction.transaction_type ===
                         'credit'
                           ? 'text-green-600'
                           : 'text-red-600'}"
@@ -741,7 +729,6 @@
         </div>
       </div>
     </div>
-  </div>
 {/if}
 
 <!-- Create Card Modal -->

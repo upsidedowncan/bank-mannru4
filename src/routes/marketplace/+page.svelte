@@ -2,6 +2,7 @@
   import Icon from "@iconify/svelte";
   import { onMount } from "svelte";
   import { goto } from "$app/navigation";
+  import { fly } from "svelte/transition";
   import { supabase, marketplaceService } from "$lib/supabase";
 
   let user: any = null;
@@ -186,7 +187,7 @@
             <div class="relative">
               <Icon
                 icon="mdi:magnify"
-                class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5"
+                class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5 z-10"
               />
               <input
                 type="text"
@@ -196,6 +197,27 @@
               />
             </div>
           </div>
+          <a
+            href="/marketplace/sell"
+            class="btn btn-primary shadow-md hover:shadow-lg transition-all"
+          >
+            <Icon icon="mdi:plus" class="w-4 h-4 mr-2" />
+            Продать товар
+          </a>
+          <a
+            href="/marketplace/cart"
+            class="btn btn-outline shadow-sm hover:shadow-md transition-all relative"
+          >
+            <Icon icon="mdi:cart" class="w-4 h-4 mr-2" />
+            Корзина
+            {#if cartCount > 0}
+              <div
+                class="badge badge-primary badge-sm absolute -top-2 -right-2"
+              >
+                {cartCount}
+              </div>
+            {/if}
+          </a>
           <button
             on:click={() => (showFilters = !showFilters)}
             class="btn btn-outline shadow-sm hover:shadow-md transition-all"
@@ -317,9 +339,10 @@
         <div
           class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5"
         >
-          {#each items as item}
+          {#each items as item, i}
             <div
               class="bg-white rounded-xl shadow-md hover:shadow-2xl transition-shadow duration-300 overflow-hidden border border-gray-100 hover:border-primary/30"
+              in:fly={{ y: 20, duration: 250, delay: i * 50 }}
             >
               <!-- Image -->
               <div
@@ -372,7 +395,7 @@
                   </a>
                 </h3>
 
-                <p class="text-sm text-gray-500 mb-3 line-clamp-2 break-words">
+                <p class="text-sm text-gray-500 mb-3 line-clamp-1 break-words">
                   {item.description}
                 </p>
 
@@ -443,6 +466,12 @@
 </div>
 
 <style>
+  .line-clamp-1 {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
   .line-clamp-2 {
     display: -webkit-box;
     -webkit-line-clamp: 2;
